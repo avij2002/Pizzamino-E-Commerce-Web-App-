@@ -20,6 +20,12 @@ app.get('/',(req,res)=>{
 if(process.env.NODE_ENV == 'production'){
     app.use(express.static("client/build"));
 }
-app.listen(port,()=>{
-    console.log(`Server is Running on Port ${port}`);
+// app.listen(port,()=>{
+//     console.log(`Server is Running on Port ${port}`);
+// });
+app.listen(process.env.PORT || process.env.CONFIG_SYSTEM_PORT, ()=>{
+    if(gSystemConfig.configDebug === true)
+    {
+        console.log(`app running on port: ${ process.env.PORT || process.env.CONFIG_SYSTEM_PORT }`);
+    }
 });
